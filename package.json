@@ -1,0 +1,11 @@
+{
+  "name": "connect4logic",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": ""
+  },
+  "author": "Curtis Babin",
+  "license": "ISC"
+}
