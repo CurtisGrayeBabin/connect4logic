@@ -1,8 +1,10 @@
 
+const EMPTY_SPACE = '';
+
 // get a new game board
 const newBoard = (row,cols) => {
     if(!row || !cols) [row,cols]=[6,7];
-    return Array(row).fill('').map(x => Array(cols).fill(''))
+    return Array(row).fill(EMPTY_SPACE).map(x => Array(cols).fill(EMPTY_SPACE))
 }
 
 
@@ -37,10 +39,19 @@ const prettyPrint = (gameboard) => {
 
 }
 
+const isValidMove = (gameboard, row, column) => {
+    if(gameboard[row][column]===EMPTY_SPACE) return true;
+    return false;
+}
+
 // check if the last move caused a winning condition
-const isWinner = (gameboard, lastRowPlaced, lastColumnPlaced, requiredWinLength) => {
+const isWinner = (gameboard, row, column, requiredWinLength) => {
+    if(!column || !row) return false;
+
+
+
     return true;
 }
 
 export default newBoard;
-export { prettyPrint, randomFill, isWinner }
+export { prettyPrint, randomFill, isValidMove, isWinner }
