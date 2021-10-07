@@ -3,16 +3,16 @@ const EMPTY_SPACE = '';
 
 // get a new game board
 const newBoard = (row,cols) => {
-    if(!row || !cols) [row,cols]=[6,7];
+    if(row===undefined || cols===undefined) [row,cols]=[6,7];
     return Array(row).fill(EMPTY_SPACE).map(x => Array(cols).fill(EMPTY_SPACE))
 }
 
 
 // fill a gameboard with random player1 and player2 moves
 const randomFill = (gameboard,player1,player2) => {
-    if(!gameboard) return null;
+    if(gameboard===undefined) return null;
 
-    if(!player1 || !player2){
+    if(player1===undefined || player2===undefined){
         [player1,player2]=['1','2'];
     }
 
@@ -46,11 +46,22 @@ const isValidMove = (gameboard, row, column) => {
 
 // check if the last move caused a winning condition
 const isWinner = (gameboard, row, column, requiredWinLength) => {
-    if(!column || !row) return false;
+    if(column===undefined || row===undefined) return false;
+    if(!requiredWinLength) requiredWinLength=4;
 
+    const piece=gameboard[row][column];
+    // 4 ways to check
+    // vertical column:
+    let count=1;
+    for(let j=(row+1); j<(row+requiredWinLength); j++){
+        if(gameboard[j][column]===piece){
+            count++;
+            if(count===requiredWinLength) return true;
+        }
+        else break;
+    }
 
-
-    return true;
+    return false;
 }
 
 export default newBoard;
